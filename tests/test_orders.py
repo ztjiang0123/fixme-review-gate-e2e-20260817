@@ -1,4 +1,4 @@
-from review_gate import Invoice, invoice_total
+from review_gate import Invoice, invoice_total, shipment_quote
 
 
 def test_invoice_total() -> None:
@@ -13,3 +13,7 @@ def test_invoice_total() -> None:
         loyalty_credit=1,
     )
     assert invoice_total(invoice) == 110
+
+
+def test_shipment_quote() -> None:
+    assert shipment_quote(2, 10, 0.5, 1, 2, 3, 4, 5) == 15
