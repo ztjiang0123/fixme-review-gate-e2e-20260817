@@ -1,4 +1,4 @@
-from review_gate import Invoice, invoice_total, shipment_quote
+from review_gate import Invoice, Shipment, invoice_total, shipment_quote
 
 
 def test_invoice_total() -> None:
@@ -16,4 +16,14 @@ def test_invoice_total() -> None:
 
 
 def test_shipment_quote() -> None:
-    assert shipment_quote(2, 10, 0.5, 1, 2, 3, 4, 5) == 15
+    shipment = Shipment(
+        weight=2,
+        distance=10,
+        base_rate=0.5,
+        fuel_surcharge=1,
+        residential_fee=2,
+        weekend_fee=3,
+        insurance_fee=4,
+        discount=5,
+    )
+    assert shipment_quote(shipment) == 15
