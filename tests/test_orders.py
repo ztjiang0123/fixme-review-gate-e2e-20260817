@@ -1,4 +1,11 @@
-from review_gate import Invoice, Shipment, invoice_total, shipment_quote
+from review_gate import (
+    DeliverySchedule,
+    Invoice,
+    Shipment,
+    delivery_window,
+    invoice_total,
+    shipment_quote,
+)
 
 
 def test_invoice_total() -> None:
@@ -27,3 +34,17 @@ def test_shipment_quote() -> None:
         discount=5,
     )
     assert shipment_quote(shipment) == 15
+
+
+def test_delivery_window() -> None:
+    schedule = DeliverySchedule(
+        distance=10,
+        traffic_factor=1.5,
+        weather_factor=2,
+        handling_hours=1,
+        warehouse_delay=2,
+        customs_delay=3,
+        weekend_delay=4,
+        priority_credit=5,
+    )
+    assert delivery_window(schedule) == 35
